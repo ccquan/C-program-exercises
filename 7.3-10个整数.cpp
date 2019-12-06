@@ -1,11 +1,12 @@
 #include <stdio.h>
+#define N 10
 void inputNumber(int *number)
 {
-	int *i, *p;
-	i = number; p = number + 10;
-	for(; i < p; i++)
+	int i;
+	for(i = 0; i < N; i++)
 	{
-		scanf("%d", i);
+		printf("请输入第%d个数：", i + 1);
+		scanf("%d", number + i);
 	}
 }
 void swap(int *a, int *b)
@@ -17,35 +18,29 @@ void swap(int *a, int *b)
 }
 void change(int *number)
 {
-	int *i, *p, *max, *min;
-	i = number; p = number + 10;
-	*max = *i;
-	for(; i < p; i++)
+	int i, *max = number, *min = number;
+	for(i = 0; i < N; i++)
 	{
-		if(*max < *i) max = i;
+//		得出最大最小值的地址 
+		if(*max < *(number + i)) max = number + i;
+		if(*min > *(number + i)) min = number + i;
 	}
-	swap(max, number + 9);  //最大值的地址和 0+9 最后一个的地址 
-	i = number; *min = *i;  //重新使 i 指向 number[0] 
-	for(; i < p; i++)
-	{
-		if(*min > *i) min = i;
-	}
-	swap(min, number);  //最小值的地址和 0 第一个的地址 
+	swap(max, number + (N - 1));
+	swap(min, number + 0);
 }
 void outNumber(int *number)
 {
-	int *i, *p;
-	i = number; p = number + 10;
-	for(; i < p; i++)
+	int i;
+	for(i = 0; i < N; i++)
 	{
-		printf("%d ", *i);
+		printf("%d ", *(number + i));
 	}
 }
 int main()
 {
-	int number[10];
-	inputNumber(number);
-	change(number);
-	outNumber(number);
+	int number[N];
+	inputNumber(number);  //输入10个数 
+	change(number);  //进行处理 
+	outNumber(number);  //输出10个数 
 	return 0;
 }

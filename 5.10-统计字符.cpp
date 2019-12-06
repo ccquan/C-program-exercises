@@ -9,7 +9,7 @@ int main()
 	//开始比较 
 	for(i = 0; i < 3; i++)
 	{
-		for(j = 0; j < 80; j++)
+		for(j = 0; text[i][j] != '\0'; j++)
 		{
 			char word = text[i][j];
 			if(word >= 'A' && word <= 'Z') uppercase += 1;

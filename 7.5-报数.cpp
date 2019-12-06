@@ -1,28 +1,35 @@
 #include <stdio.h>
-void sort(int *p)
+void sort(int *p, int n)
 {
-	int i, number_off, number_i;
-	for(i = 0; i < 200; i++)
+	int i = 0, k = 0, people = n, number_i;
+	while(people != 1)
 	{
-		number_off = i % 10 + 1;
-		number_i = i % 10;
-		printf("number_off = %d, number_i = %d\n", number_off, number_i);
-		if(*(p + number_i) == 0)
+		number_i = i % n;  //使 number_i 永远在 0 - n 上 
+		if(*(p + number_i) != 0)  //报到3的会赋值成0，判断是不是已被退出的 
 		{
-			i++;
-			continue;
+			k++;  //报数 
+			if(k == 3)
+			{
+				*(p + number_i) = 0;
+				people -= 1;  //报到3时人数减一个 
+				k = 0;  // k 到 3 之后重新报数 
+			}
+			
 		}
-		if(number_off % 3 == 0) *(p + number_i) = 0;
+		i++;
 	}
 }
 int main()
 {
-	int i, n = 10;
-	int circle[n] = {3, 4, 6, 9, 13, 15, 17, 20, 30, 31}, *p;
+	int i, n = 3;
+	int circle[n], *p;
 	p = circle;
-	sort(p);
-	for(i = 0; i < 10; i++)
+	for(i = 0; i < n; i++) *(p + i) = i + 1;  //把号数赋值进去数组 
+	sort(p, n);
+//	打印 
+	for(i = 0; i < n; i++)
 	{
-		if(circle[i] != 0) printf("%d ", circle[i]);
+		if(circle[i] != 0) printf("最后留下来的时原来第%d号", circle[i]);
 	}
+	return 0;
 }

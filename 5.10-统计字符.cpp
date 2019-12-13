@@ -22,6 +22,7 @@ int main()
 	
 	//打印 
 	printf("大写字母有%d个，小写字母有%d个，数字有%d个，空格有%d个，其他字符有%d个", uppercase, lowercase, number, space, other);
+	return 0;
 }
 
 //  https://suijimimashengcheng.51240.com/   随机字符生成 

@@ -1,5 +1,6 @@
 #include <stdio.h>
-int qiuDays(int year, int month, int day)
+
+int days(int year, int month, int day)
 {
 	int i, Days = 0;
 	int month_day[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -13,10 +14,14 @@ int qiuDays(int year, int month, int day)
 }
 int main()
 {
-	int year, month, day;
-	printf("请输入年月日：");
-	scanf("%d %d %d", &year, &month, &day);
-	int res_day = qiuDays(year, month, day);
+	struct Date
+	{
+		int year;
+		int month;
+		int day;
+	}today = {2019, 12, 6};
+	int res_day = days(today.year, today.month, today.day);
+//	打印
 	printf("这是该年的第%d天", res_day);
-	return 0;
+	return 0; 
 }
